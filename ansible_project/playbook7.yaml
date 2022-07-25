@@ -1,0 +1,5 @@
+---
+- name: MyPlaybook 7
+  hosts: netology
+  roles:
+  - role: myrole

@@ -1,0 +1,18 @@
+---
+# tasks file for myrole 
+   - name: install httpd
+     yum:
+      name: httpd
+      state: latest
+   - name: start httpd
+     systemd:
+      name: httpd
+      state: started
+      enabled: yes
+   - name: info
+     shell: echo "CPU <br> {{ ansible_processor }}<br><br> MEM {{ ansible_memtotal_mb }} Mb<br><br> Disk<br>{{ ansible_devices.sda.partitions.sda1.size }}<br><br>IP<br> {{ ansible_eth1.ipv4.address }}" > /var/www/html/index.html
+   - name: get page
+     ansible.builtin.uri:
+      url: http://{{ ansible_eth1.ipv4.address }}
+      method: GET
+      status_code: [200]

@@ -1,0 +1,17 @@
+- name: MyPlaybook_terr
+  hosts: netology
+  tasks:
+   - name: install epel
+     yum:
+      name: epel-release
+      state: latest
+   - name: install nginx
+     yum:
+      name: nginx
+      state: latest
+   - name: enable nginx
+     systemd:
+       name: nginx
+       state: started
+       enabled: yes
+       

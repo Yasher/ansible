@@ -1,0 +1,11 @@
+---
+    - name: MyPlaybook 3
+      hosts: netology
+      vars:
+       motd: "-------------------------\n-------------------------\n {{ ansible_eth1.ipv4.address }} {{ ansible_hostname }}\n Сисадмин Сисадминь!!! \n-------------------------\n-------------------------\n"
+      tasks:
+       - name: change motd
+         become: true
+         shell: echo "{{ motd }}" > /etc/motd
+    
+          

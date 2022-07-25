@@ -1,0 +1,19 @@
+- name: MyPlaybook_terr_mysql
+  hosts: netology2
+  tasks:
+   - name: install rpm
+     yum:
+      name:  http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+      state: present
+   - name: Update OS
+     yum:
+      name="*" state=latest
+   - name: install mysql
+     yum:
+      name:  mysql-server
+      state: latest
+   - name: start mysql
+     systemd: 
+      name: mysqld 
+      state: started 
+      enabled: yes

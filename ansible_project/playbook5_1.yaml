@@ -1,0 +1,23 @@
+- name: MyPlaybook
+  hosts: netology
+  tasks:
+   - name: сreate directory
+     file:
+       path=/root/test
+       state=directory
+   - name: wget
+  #    shell: wget https://files.phpmyadmin.net/phpMyAdmin/5.2.0/phpMyAdmin-5.2.0-all-languages.tar.gz --no-check-certificate
+
+     get_url:
+      url:  https://files.phpmyadmin.net/phpMyAdmin/5.2.0/phpMyAdmin-5.2.0-all-languages.tar.gz
+      dest: /root/phpMyAdmin-5.2.0-all-languages.tar.gz
+      validate_certs: no
+   - name: Extract
+     become: true
+     become_user: root
+     
+     unarchive:
+      remote_src: yes
+      src: /root/phpMyAdmin-5.2.0-all-languages.tar.gz
+      dest: /root/test
+      
