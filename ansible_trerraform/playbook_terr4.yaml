@@ -17,3 +17,10 @@
       name: mysqld 
       state: started 
       enabled: yes
+   - name: check status mysql
+     command: "systemctl status mysqld"
+     register: result
+     ignore_errors: yes
+   - name: showing report
+     debug:
+      var: result
